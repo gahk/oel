@@ -34,7 +34,6 @@ export class ShopperService {
     const date = new Date();
     purchase.date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-'
       + date.getDate() + ' '+ date.getHours() + ':' + date.getMinutes();
-	console.log(JSON.stringify(purchase));
     return this.http.post(this.apiURL + 'purchase', JSON.stringify(purchase), this.httpOptions);
   }
 }

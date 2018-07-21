@@ -15,8 +15,12 @@ export class Item {
       item.current_price = parseFloat(product.current_price);
       item.quantity = 1;
       item.quantityType = 'x';
-    } else {
-      item.weight_price = parseFloat(product.weight_price) / 100;
+    } else if (product.weight_price === '0') {
+	  item.current_price = 0;
+      item.quantity = parseFloat(priceStep);
+      item.quantityType = 'kr.';
+	} else {
+      item.weight_price = parseFloat(product.weight_price);
       item.quantity = parseFloat(priceStep);
       item.quantityType = 'g';
     }

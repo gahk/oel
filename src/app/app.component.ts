@@ -63,7 +63,9 @@ export class AppComponent {
 
   updateTotal() {
     this.total = 0;
-    this.basket.forEach(i => this.total += i.current_price === 0 ? (i.weight_price * i.quantity) : (i.current_price * i.quantity));
+    this.basket.forEach(i => this.total += i.current_price === 0 ? 
+		(i.weight_price == 0 ? i.quantity : (i.weight_price / 100 * i.quantity)) : 
+		(i.current_price * i.quantity));
   }
 
   addToAlumneNumber(numberToAdd: string) {
@@ -117,9 +119,7 @@ export class AppComponent {
 
   checkout() {
     this.checkoutTimerSub.unsubscribe();
-    this.shopperService.purchase(this.chosenShoppers, this.basket).subscribe(res => {
-		console.log(res);
-    });
+    this.shopperService.purchase(this.chosenShoppers, this.basket).subscribe(res => {});
 	this.reset();
   }
 
