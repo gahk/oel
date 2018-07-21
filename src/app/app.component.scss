@@ -1,0 +1,622 @@
+/* BASICS */
+
+* {
+  -webkit-user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+h1 {
+  font-weight: bold;
+  font-size:18px;
+  margin:0;
+  padding: 0;
+  color:#333333;
+}
+
+h2 {
+  font-weight: bold;
+  font-size:12px;
+  margin:0;
+  padding: 0;
+  color:#333333;
+}
+
+p {
+  font-size:12px;
+}
+
+/* SEKTIONER */
+#basket {display:visible;}
+#fordeltpaaandre {display:visible;}
+#medlem {display:visible;}
+#andre {display: visible;}
+#checkout {display:none;}
+#confirmation {display:none;}
+#nocredit {display:none;}
+#wrongnumber {display:none;}
+//#basket {display:none;}
+//#andre {display:none;}
+//#medlem {display:none;}
+#alumneliste {
+  //display:none;
+  background-color:rgba(255, 255, 255, 0.98);
+  z-index: 70;
+  overflow: auto;
+  width:100% !important;
+}
+#fordel {display:none;
+  background-color:rgba(255, 255, 255, 0.98);
+  z-index: 20;
+}
+
+.background{z-index:10}
+
+/* SIDEMENU */
+
+/* Produkter */
+
+
+aside {
+  width:25%;
+  height:100%;
+  position:fixed;
+  right:0;
+  background-color:#ffffff;
+  padding: 1%;
+  overflow-y: scroll;
+  z-index: 10;
+}
+
+aside img {
+  width: 100%;
+}
+
+.liste {
+  padding: 10px 0 5px 0;
+}
+
+.basket {
+  padding: 10px 0 5px 0;
+  border-top:1px #cccccc solid;
+  border-bottom:1px #cccccc solid;
+  position: relative;
+}
+
+.fordeling {
+  height:30%;
+  padding: 10px 0 5px 0;
+  border-bottom:1px #cccccc solid;
+}
+
+.fordeltil {
+  height:70%;
+  padding: 10px 0 5px 0;
+}
+
+.andre {
+  padding: 10px 0 5px 0;
+  border-bottom:1px #cccccc solid;
+  position: relative;
+}
+
+.luk {
+  position:absolute;
+  top:2vw;
+  right:2vw;
+  background-image: url("../assets/images/luk.png");
+  background-size: 100%;
+  height:20px;
+  width:20px;
+}
+
+.luk img {
+  width:100%;
+}
+
+.close {
+  position:absolute;
+  top:1vw;
+  right:0.5vw;
+  background-image: url("../assets/images/luk.png");
+  background-size: 100%;
+  height:20px;
+  width:20px;
+}
+
+#buttonCheckOut{
+
+    padding: 10px;
+  background-color: #33a936;
+  color:#ffffff;
+  margin-left:5px;
+  margin-right:5px;
+  width:37%;
+}
+
+aside ul {
+  list-style: none;
+  padding:10px 0 30px 0;
+  margin:0;
+  font-size: 12px;
+}
+
+aside ul li {
+  line-height: 20px;
+  position: relative;
+  clear:both;
+  padding: 5px;
+}
+
+aside ul li .antal {
+  float:left;
+  width:10%;
+}
+aside ul li .quantityType{
+  float:left;
+  width:10%;
+}
+
+
+aside ul li .x {
+  float:left;
+  width:10%;
+}
+
+aside ul li .produkt {
+  float:left;
+  width:40%;
+}
+
+aside ul li .alumnumName {
+  float:left;
+  width:80%;
+}
+
+aside ul li .knapper {
+  margin-right: 10px;
+  float: left;
+  overflow: hidden;
+}
+
+aside ul li .shopperid {
+  float:right;
+  width:10%;
+  font-size:2em;
+  line-height: 40px;
+}
+
+aside ul li .alumnenavn {
+  float:right;
+  width:50%;
+  font-size:2em;
+  line-height: 40px;
+}
+
+
+aside ul li .fordel {
+  padding: 10px 20px;
+  background-color: #337ea9;
+  color:#ffffff;
+  margin-left:10px;
+  display: inline-block;
+
+}
+
+aside ul li .slet {
+  padding: 0 10px;
+  background-color: #a93333;
+  color:#ffffff;
+  margin-left:5px;
+  float:right; 
+}
+
+aside ul li .fjern {
+  padding: 0 10px;
+  background-color: #a93333;
+  color:#ffffff;
+  margin-left:5px;
+  width: 17%;
+  float:right; 
+}
+
+aside ul li .vaelg {
+  padding: 0 10px;
+  background-color: #33a936;
+  color:#ffffff;
+  margin-left:5px;
+  float:right; 
+}
+
+aside ul li .checkudsom {
+  padding: 10px 20px;
+  background-color: #33a936;
+  color:#ffffff;
+  margin-left:5px;
+  margin-right:5px;
+  display: inline-block;
+  float:left;
+
+}
+
+aside ul li.inaktiv {
+  color:#cccccc;
+}
+
+/* Medlem */
+
+.medlem {
+  margin-top:20px;
+  width:100%;
+  height:27vw;
+
+  bottom:0;
+  padding-right:8%;
+}
+
+.medlem ul {
+  width:80%;
+  margin:0 auto;
+}
+
+.medlem ul li {
+  background-color: #f3f3f3;
+  width:29%;
+  height:5.2vw;
+  line-height: 4.4vw;
+  margin:2%;
+  font-weight: bold;
+  text-align: center;
+  float:left;
+  clear: none;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.medlem ul li.neutral {
+  background-color: #ffffff;
+  line-height: 6vw;
+}
+
+.medlem ul li.neutral img {
+  width:50%;
+
+}
+
+/* CHECKOUT */
+
+#checkout {
+  background-color:rgba(255, 255, 255, 0.90);
+  width:100%;
+  height:100%;
+  z-index: 40;
+  position:fixed;
+  top:0;
+}
+
+#checkout .box {
+  position:fixed;
+  width:600px;
+  top:200px;
+  right:50%;
+  margin-right:-300px;
+  background-color:#ffffff;
+  padding:20px;
+  text-align: center;
+  box-shadow: 0px 0px 20px 0px #c7c7c7;
+}
+
+/* BUNDNAVIGATION */
+
+.info {
+  width:100%;
+  position: absolute;
+  bottom: 1vw;
+  cursor: pointer;
+}
+
+.buttonleft {
+  color:#ffffff;
+  width:45%;
+  margin-right:1%;
+  float:left;
+  font-size:0.8em;
+  line-height: 30px;
+  text-align: center;
+}
+
+.buttonright {
+  background-color: #cccccc;
+  color:#333333;
+  width:45%;
+  margin-left:1%;
+  margin-right:8%;
+  float:left;
+  font-size:0.8em;
+  line-height: 30px;
+  text-align: center;
+}
+
+#gem {
+  background-color: #337ea9;
+}
+
+#tilbage {
+
+}
+
+/* CHECKOUT BOX */
+
+.buttoncheckout {
+  width:60%;
+  margin:20px auto;
+  font-size:1.2em;
+  line-height: 40px;
+  text-align: center;
+}
+
+#fortryd {
+  float:left;
+  background-color: #a93333;
+  color:#ffffff;
+  width:45%;
+  margin-right:10%;
+}
+
+#godkend {
+  float:left;
+  background-color: #cccccc;
+  color:#ffffff;
+  width:45%;
+}
+
+#okwrongnumber {
+  background-color: #337ea9;
+  color:#ffffff;
+}
+
+#oknocredit {
+  background-color: #337ea9;
+  color:#ffffff;
+}
+
+
+
+/* MAIN CONTENT (PRODUKTER) */
+
+article {
+  width:75%;
+  min-height:100%;
+  position:absolute;
+  left:0;
+  padding:2% 2%;
+  background-color:#f3f3f3;
+}
+
+article ul {
+  margin:0;
+  padding:0;
+  list-style: none;
+}
+
+article ul li {
+  width:31%;
+  position:relative;
+  background-color:#ffffff;
+  float:left; 
+  margin:1%;
+  padding:0;
+  list-style: none;
+}
+
+
+article ul li img {
+  width:100%;
+  height:22vw;
+  overflow:hidden;
+}
+
+article ul li .produktnavn {
+  color:#333333;
+  padding:1px 10px 5px 10px;
+  float:left;
+  font-size:0.8em;
+  line-height: 1.6em;
+  height:2em;
+  overflow:hidden;
+}
+
+article ul li .pris {
+  color:#333333;
+  padding-right:10px;
+  line-height: 1.6em;
+  float:right;
+  font-weight: bold;
+  position:inline;
+  right:0;
+}
+
+article ul li .produktoverlay {
+  color:#00ff00;
+  width:100%;
+  height:22vw;
+  background-color:rgba(0, 0, 0, 0.7);
+  position:absolute;
+  text-align: center;
+  color:#ffffff;
+  font-size:10em;
+  font-weight: bold;
+  line-height:22vw;
+}
+
+article ul li .topleft {
+  width:50%;
+  height:11vw;
+  position:absolute;
+  padding:10px;
+  border-right:1px #ffffff dashed;
+  border-bottom:1px #ffffff dashed;
+}
+
+article ul li .topright {
+  width:50%;
+  height:11vw;
+  position:absolute;
+  right:0;
+  padding:10px;
+  text-align: right;
+  border-bottom:1px #ffffff dashed;
+}
+
+article ul li .bottomleft {
+  width:50%;
+  height:11vw;
+  position:absolute;
+  top:11vw;
+  padding:10px;
+  border-right:1px #ffffff dashed;
+}
+
+article ul li .bottomright {
+  width:50%;
+  height:11vw;
+  position:absolute;
+  right:0;
+  top:11vw;
+  padding:10px;
+  text-align: right;
+}
+
+article ul li .number {
+  font-size: 0.8em;
+  font-weight: bold;
+  color:#ffffff;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+
+.prisright {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+.prisleft {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+
+
+/* Smartphones (fra iPhone6+)*/
+@media only screen and (max-width : 420px) {
+
+
+#basket {display:visible;}
+#fordeltpaaandre {display:visible;}
+#medlem {display:none;}
+#checkout {display:none;}
+#alumneliste {display:none;}
+#fordel {display:visible;
+  position:fixed;
+  height:100%;
+  }
+
+aside {
+  width:100%;
+  height:auto;
+  position:fixed;
+  right:top;
+  background-color:#ffffff;
+  padding: 1%;
+  z-index: 10;
+}
+
+aside img {
+  display:none;
+}
+
+.basket {
+  padding: 10px 0 5px 0;
+  border-top:0px #cccccc solid;
+  border-bottom:1px #cccccc solid;
+  position: relative;
+}
+
+.medlem {
+padding: 10px 0 5px 0;
+
+}
+
+.medlem ul {
+  width:60%;
+  margin:0 auto;
+  height:80vw;
+}
+
+.medlem ul li {
+  height:16vw;
+  line-height: 13vw;
+}
+
+.info {
+  width:100%;
+  position: absolute;
+  bottom: 4vw;
+}
+
+article {
+  width:100%;
+  min-height:100%;
+  position:absolute;
+  top:0px;
+  padding:2% 2%;
+  background-color:#f3f3f3;
+}
+
+article ul li {
+  width:98%;
+  position:relative;
+}
+
+article ul li img {
+  width:100%;
+  height:86vw;
+}
+
+article ul li .produktoverlay {
+  height:86vw;
+  line-height:82vw;
+}
+
+article ul li .topleft {
+  height:43vw;
+}
+
+article ul li .topright {
+  height:43vw;
+}
+
+article ul li .bottomleft {
+  height:43vw;
+  top:43vw;
+}
+
+article ul li .bottomright {
+  height:43vw;
+  top:43vw;
+}
+
+.luk {
+  top:4vw;
+  right:3vw;
+  height:20px;
+  width:20px;
+}
+
+}
+
+

@@ -1,20 +1,130 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div>
+	<article>
+		<ul id="product-item-list">
+			<li *ngFor="let product of products">
+				<div *ngIf="product.current_price != 0; else special"
+					(click)="addProductToBasket(product, '')">
+					<img src="{{product.imageurl}}" alt="{{product.name}}">
+					<a class="produktnavn">{{product.name}}</a> 
+					<span class="pris">kr {{product.current_price}}</span>
+				</div> 
+				<ng-template #special>
+					<div id="1" class="topleft number" (click)="addProductToBasket(product, product.price_steps1)">{{product.price_steps1}}</div>
+					<div id="2" class="topright number" (click)="addProductToBasket(product, product.price_steps2)">{{product.price_steps2}}</div>
+					<div id="3" class="bottomleft" (click)="addProductToBasket(product, product.price_steps3)">
+						<div class="prisleft number">{{product.price_steps3}}</div>
+					</div>
+					<div id="4" class="bottomright" (click)="addProductToBasket(product, product.price_steps4)">
+						<div class="prisright number">{{product.price_steps4}}</div>
+					</div>
+					<img src="{{product.imageurl}}" alt="{{product.name}}">
+					<div class="produktnavn">{{product.name}}</div>
+				</ng-template>
+			</li>
+		</ul>
+	</article>
+	<aside class="background">
+		<div class="logo">
+			<img src="assets/images/GAHK_logo.png" alt="Gustav Adolf Hagemanns Kollegium">
+		</div>
+		<div *ngIf="basket.length > 0">
+			<div id="basket">
+				<div class="basket">
+					<div class="close" id="nulstil" (click)="reset()"></div>
+					<h1>Dine indtastninger:</h1>
+					<ul id="basket-list">
+					<li *ngFor="let item of basket">
+						<div class="antal">{{item.quantity}} </div>
+					    <div class="quantityType">{{item.quantityType}}</div>
+					    <div class="produkt">{{item.name}}</div>
+					    <div class="slet" (click)="deleteItemFromBasket(item)">slet</div>
+					    </li>
+					</ul>
+					<div id="total">Samlet pris: {{total | number:'.0-2'}} kr.</div>
+				</div>
+			</div>
+			<div id="andre" *ngIf="chosenShoppers.length > 1">
+				<div class="andre">
+					<h1>Fordelt på:</h1>
+					<div class="close" id="nulstilAlumnums" (click)="resetChosenShoppers()"></div>
+					<ul id="alumne-distribution-list">
+						<li *ngFor="let shopper of chosenShoppers">
+							<div class="alumnumName">{{shopper.name}}</div>
+							<div class="fjern" (click)="deleteShopperFromChosen(shopper)">slet</div>
+						</li>
+					</ul>
+					<div id="buttonCheckOut" (click)="checkoutAsShared()">Check ud</div>
+				</div>
+			</div>
+			<div id="medlem">
+				<div class="medlem">
+					<h1>
+						Check ud: <span id="shopper-id">{{alumneNumber}}</span>
+					</h1>
+					<ul id="checkout-nos">
+						<li (click)="addToAlumneNumber('1')">1</li>
+						<li (click)="addToAlumneNumber('2')">2</li>
+						<li (click)="addToAlumneNumber('3')">3</li>
+						<li (click)="addToAlumneNumber('4')">4</li>
+						<li (click)="addToAlumneNumber('5')">5</li>
+						<li (click)="addToAlumneNumber('6')">6</li>
+						<li (click)="addToAlumneNumber('7')">7</li>
+						<li (click)="addToAlumneNumber('8')">8</li>
+						<li (click)="addToAlumneNumber('9')">9</li>
+						<li class="neutral" id="sealumneliste" (click)="showAlumneListe()"><img src="assets/images/list.png" alt="se alumneliste"></li>
+						<li (click)="addToAlumneNumber('0')">0</li>
+						<li class="neutral" id="undo" (click)="addToAlumneNumber('del')"><img src="assets/images/erasenumber.png" alt="slet sidst indtastede nummer"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<div id="checkout">
+	  	<div id="confirmation" class="box">
+		    <p>Tak for din registrering</p>
+		    <h1 id="confirmationname">{{registrationName}}</h1>
+		    <p></p>
+		    <div id="fortryd" class="buttoncheckout" (click)="cancel()">Fortryd ({{countDownTime}})</div>
+		    	<div id="godkend" class="buttoncheckout" (click)="checkout()">Fast lane</div>
+		    <input id="stopTransaction" type="hidden" >
+		    <input id="confirmTransaction" type="hidden">
+		  </div>
+		  <div id="nocredit" class="box">
+		    <h1 id="nocreditname"></h1>
+		    <p>Du kan <u>ikke</u> købe disse varer fordi du din saldo er for lav.</p>
+		    <p>Kontakt ølkæeren for at for din konto åbnet</p>
+		    <div id="oknocredit" class="buttoncheckout">
+		      OK
+		    </div>
+		  </div>
+		  <div id="wrongnumber" class="box">
+		    <h1>Forkert nummer</h1>
+		    <p>Det indtastede alumne ID findes ikke.</p>
+		    <p>Prøv igen eller vælg fra alumnelisten.</p>
+		    <div id="okwrongnumber" class="buttoncheckout" (click)="hideWrongNumber()">
+		      OK
+		    </div>
+		  </div>
+	</div>
+	<aside id="alumneliste" *ngIf="showAlumneListeBool">
+		<div class="luk" (click)="hideAlumneListe()"></div>
+		<div class="liste">
+			<h1>Aktive brugere</h1>
+			<p>
+			Alumner som ikke har betalt depositum (eller har for stort minus) kan ikke benytte alumnenr til betaling.
+			</p>
+			<ul id="alumneliste-checkout">
+				<div *ngFor="let shopper of shoppers">
+					<li *ngIf="chosenShoppers.indexOf(shopper) == -1">
+						<div class="knapper">
+							<div class="checkudsom" (click)="checkoutAsShopper(shopper)">check ud som</div>
+				         	<div class="fordel" (click)="distributeOn(shopper)">fordel på</div>
+				       	</div>
+			        	<div class="shopperid">{{shopper.alumnumId}}</div>
+				        <div class="alumnenavn">{{shopper.name}}</div>
+			        </li>
+				</div>
+			</ul>
+		</div>
+	</aside>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
