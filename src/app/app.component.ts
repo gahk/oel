@@ -39,16 +39,20 @@ export class AppComponent {
   }
 
   addProductToBasket(product: Product, priceStep: string) {
-    let item: Item = this.basket.find(i => i.productId === product.productId);
+    const item: Item = this.basket.find(i => i.productId === product.productId &&
+      (priceStep === '' || i.current_price === parseFloat(priceStep) || i.weight_price !== 0));
     if (item !== undefined) {
-      if (product.current_price !== '0') {
-        item.quantity = ++item.quantity;
+      if (item.current_price !== 0) {
+        if (priceStep === '' || item.current_price === parseFloat(priceStep)) {
+          item.quantity = ++item.quantity;
+        } else {
+          this.basket.push(Item.createItemFromProduct(product, priceStep));
+        }
       } else {
         item.quantity += parseFloat(priceStep);
       }
     } else {
-      item = Item.createItemFromProduct(product, priceStep)
-      this.basket.push(item);
+      this.basket.push(Item.createItemFromProduct(product, priceStep));
     }
     this.updateTotal();
   }
@@ -63,8 +67,8 @@ export class AppComponent {
 
   updateTotal() {
     this.total = 0;
-    this.basket.forEach(i => this.total += i.current_price === 0 ? 
-		(i.weight_price == 0 ? i.quantity : (i.weight_price / 100 * i.quantity)) : 
+    this.basket.forEach(i => this.total += i.current_price === 0 ?
+		(i.weight_price === 0 ? i.quantity : (i.weight_price / 100 * i.quantity)) :
 		(i.current_price * i.quantity));
   }
 
